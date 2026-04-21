@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopZone - Tu Tienda Online</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#" class="logo" id="logo-link">
+        <span class="logo-icon">&#9749;</span>
+        ShopZone
+      </a>
+      <nav class="nav" id="main-nav">
+        <a href="#" class="nav-link active" data-page="home">Inicio</a>
+        <a href="#" class="nav-link" data-page="products">Productos</a>
+        <a href="#" class="nav-link" data-page="categories">Categorías</a>
+      </nav>
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Buscar productos..." />
+          <button class="search-btn" id="search-btn">&#128269;</button>
+        </div>
+        <button class="cart-btn" id="cart-btn" aria-label="Carrito">
+          &#128722;
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menú">&#9776;</button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#" class="nav-link" data-page="home">Inicio</a>
+      <a href="#" class="nav-link" data-page="products">Productos</a>
+      <a href="#" class="nav-link" data-page="categories">Categorías</a>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main id="app">
+
+    <!-- HOME PAGE -->
+    <section class="page active" id="page-home">
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero-content">
+          <h1>Descubre los Mejores Productos</h1>
+          <p>Miles de artículos con los mejores precios. Envío rápido y seguro a todo el mundo.</p>
+          <button class="btn btn-primary btn-lg" data-page="products">Ver Productos</button>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-badge">&#11088; 4.9</div>
+          <div class="hero-card">
+            <div class="hero-img-placeholder">&#128722;</div>
+            <p>+10,000 productos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features -->
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">&#128666;</div>
+          <h3>Envío Gratis</h3>
+          <p>En pedidos mayores a $50</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>Pago Seguro</h3>
+          <p>Transacciones 100% protegidas</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128260;</div>
+          <h3>Devoluciones</h3>
+          <p>30 días para devolver</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128222;</div>
+          <h3>Soporte 24/7</h3>
+          <p>Siempre disponibles para ti</p>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="section">
+        <h2 class="section-title">Categorías Populares</h2>
+        <div class="categories-grid" id="home-categories">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+      </div>
+
+      <!-- Featured Products -->
+      <div class="section">
+        <div class="section-header">
+          <h2 class="section-title">Productos Destacados</h2>
+          <button class="btn btn-outline" data-page="products">Ver todos</button>
+        </div>
+        <div class="products-grid" id="featured-products">
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+          <div class="skeleton-card"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS PAGE -->
+    <section class="page" id="page-products">
+      <div class="page-header">
+        <h1>Todos los Productos</h1>
+        <p id="products-count">Cargando...</p>
+      </div>
+      <div class="products-layout">
+        <aside class="sidebar">
+          <div class="sidebar-section">
+            <h3>Categorías</h3>
+            <ul class="category-list" id="sidebar-categories">
+              <li><button class="category-btn active" data-cat="all">Todas</button></li>
+            </ul>
+          </div>
+          <div class="sidebar-section">
+            <h3>Precio</h3>
+            <div class="price-range">
+              <label>Min: $<span id="price-min-val">0</span></label>
+              <input type="range" id="price-min" min="0" max="1000" value="0" step="5" />
+              <label>Max: $<span id="price-max-val">1000</span></label>
+              <input type="range" id="price-max" min="0" max="1000" value="1000" step="5" />
+            </div>
+          </div>
+          <div class="sidebar-section">
+            <h3>Ordenar por</h3>
+            <select id="sort-select" class="sort-select">
+              <option value="default">Relevancia</option>
+              <option value="price-asc">Precio: Menor a Mayor</option>
+              <option value="price-desc">Precio: Mayor a Menor</option>
+              <option value="rating">Mejor Valorados</option>
+              <option value="name">Nombre A-Z</option>
+            </select>
+          </div>
+        </aside>
+        <div class="products-content">
+          <div class="products-toolbar">
+            <span id="filtered-count"></span>
+            <div class="view-toggle">
+              <button class="view-btn active" id="grid-view-btn" aria-label="Vista cuadrícula">&#9726;</button>
+              <button class="view-btn" id="list-view-btn" aria-label="Vista lista">&#9776;</button>
+            </div>
+          </div>
+          <div class="products-grid" id="all-products"></div>
+          <div class="no-results hidden" id="no-results">
+            <div class="no-results-icon">&#128269;</div>
+            <h3>No se encontraron productos</h3>
+            <p>Intenta con otros filtros o términos de búsqueda</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES PAGE -->
+    <section class="page" id="page-categories">
+      <div class="page-header">
+        <h1>Explorar Categorías</h1>
+        <p>Encuentra exactamente lo que buscas</p>
+      </div>
+      <div class="categories-detail-grid" id="categories-detail"></div>
+    </section>
+
+    <!-- PRODUCT DETAIL PAGE -->
+    <section class="page" id="page-product-detail">
+      <button class="back-btn" id="back-btn">&#8592; Volver</button>
+      <div id="product-detail-content"></div>
+    </section>
+
+  </main>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2>&#128722; Tu Carrito</h2>
+      <button class="close-cart-btn" id="close-cart-btn">&times;</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <div class="cart-empty" id="cart-empty">
+        <div class="cart-empty-icon">&#128722;</div>
+        <p>Tu carrito está vacío</p>
+        <button class="btn btn-primary" id="cart-shop-btn">Ir a comprar</button>
+      </div>
+    </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-summary">
+        <div class="cart-row">
+          <span>Subtotal</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <div class="cart-row">
+          <span>Envío</span>
+          <span id="cart-shipping">Gratis</span>
+        </div>
+        <div class="cart-row cart-total">
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" id="checkout-btn">Proceder al Pago</button>
+      <button class="btn btn-outline btn-full" id="clear-cart-btn">Vaciar Carrito</button>
+    </div>
+  </aside>
+
+  <!-- TOAST -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="checkout-modal">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-success">
+        <div class="success-icon">&#10003;</div>
+        <h2>¡Pedido Confirmado!</h2>
+        <p>Gracias por tu compra. Recibirás un correo de confirmación pronto.</p>
+        <button class="btn btn-primary" id="modal-continue">Seguir Comprando</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo">&#9749; ShopZone</span>
+        <p>Tu tienda online de confianza. Los mejores productos al mejor precio.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <a href="#">Sobre nosotros</a>
+          <a href="#">Trabaja con nosotros</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Ayuda</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Contacto</a>
+          <a href="#">Devoluciones</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 ShopZone. Powered by <a href="https://fakestoreapi.com" target="_blank">Fake Store API</a>.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
